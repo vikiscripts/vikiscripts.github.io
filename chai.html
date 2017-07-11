@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+span#print{
+    background-color:#a9e2f9;
+    padding:5px;
+}
+
+.odd{background-color: white;} 
+.even{background-color: gray;} 
+.targetrow{background-color: yellow;} 
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    text-align: Center;
+    padding: 8px;
+}
+
+/*tr:nth-child(even){background-color: #f2f2f2} */
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+</style>
+</head>
+<body> 
+
+
+<h2>Honest Chai Wala's Roaster</h2>
+
+<table id="thetable"> 
+  <tr>
+    <th>Participants</th>
+  </tr>
+  <tr>
+    <td>Birendra</td>
+  </tr>
+  <tr>
+    <td>Keshav</td>
+  </tr>
+  <tr>
+    <td>Farooq</td>
+  </tr>
+  <tr>
+    <td>Manoj</td>
+  </tr>
+  <tr>
+    <td>Vikas</td>
+  </tr>
+  <tr>
+    <td>Mobin</td>
+  </tr>
+  <tr>
+    <td>Nimit</td>
+  </tr>
+  <tr>
+    <td>Prashant</td>
+  </tr>
+</table>
+
+<br>
+<br>
+**Yellow Color Needs to pay today
+
+<br>
+<br>
+
+<button type="button"
+onclick="FindPayeeRow('thetable')">
+Who is Sponcer!! </button>
+<br><br>
+<p>Participant Index <span id="print"></span>.</p> 
+
+<script>
+
+var myArray = [0, 1 , 2 , 3 , 4, 5 , 6, 7, 8];
+var myIndex = 0;
+var print = document.getElementById('print');
+
+print.innerHTML = myArray[0]; //Print first value of array right away.
+print.style.color = myArray[0]; //Set color of id print.
+
+
+function FindPayeeRow(id){ 
+    print.innerHTML = myArray[myIndex];
+    print.style.color = myArray[myIndex];
+    myIndex = (myIndex + 1) % (myArray.length);
+  if(document.getElementsByTagName){  
+    var table = document.getElementById(id);   
+    var rows = table.getElementsByTagName("tr");   
+    for(i = 0; i < rows.length; i++){           
+  //manipulate rows 
+      if(i == myIndex){ 
+        rows[i].className = "targetrow"; 
+      }else{ 
+        rows[i].className = "odd"; 
+      }      
+    } 
+  } 
+}
+
+function FindPayeeRowT(id){ 
+  if(document.getElementsByTagName){  
+    var table = document.getElementById(id);   
+    var rows = table.getElementsByTagName("tr");   
+    for(i = 0; i < rows.length; i++){           
+  //manipulate rows 
+      if(i == 2){ 
+        rows[i].className = "targetrow"; 
+      //}else{ 
+       // rows[i].className = "odd"; 
+      }       
+    } 
+  } 
+}
+
+
+
+//document.getElementById("demo").innerHTML = myFunction(4, 3);
+</script>
+
+</body>
+</html>
