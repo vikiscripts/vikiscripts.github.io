@@ -33,6 +33,11 @@ li a:hover:not(.active) {
     background-color: #111;
     
 }
+.active2 {
+    background-color: #12456;
+ }
+
+
 
 
 /* Below section is for the Body and Posts*/
