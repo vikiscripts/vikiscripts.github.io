@@ -83,8 +83,9 @@ body{margin:auto;}
 	editor.getSession().setUseWorker(false);
 	editor.setTheme("ace/theme/crimson_editor");
 	editor.getSession().setMode("ace/mode/powershell");
+	editor.setOption("showPrintMargin", false);
 	editor.setOption("maxLines", 35);
-    editor.setOption("minLines", 6);
+        editor.setOption("minLines", 6);
 	editor.setAutoScrollEditorIntoView(true);
 	
 	$('#theme').on('change', function () {
