@@ -109,14 +109,16 @@
       	<h4>PowerShell Command Builder<h4>
 	<!-- <label for="mode">Cmd-Let: </label> -->
 	<select id="mainCmdSelect" onchange="mainCmdtext()">
+		<option value="" selected>--Cmd-Let--</option>
     		<option value="Get-Service">Get-Service</option>
-    		<option value="Get-ChildItem" selected>Get-ChildItem</option>
+    		<option value="Get-ChildItem">Get-ChildItem</option>
     		<option value="Get-HotFix">Get-HotFix</option>
     		<option value="Get-Process">Get-Process</option>  
     		<option value="Get-EventLog">Get-EventLog</option>
     	</select>
 
 	<select id="SecondCmdSelect" onchange="SecondCmdtext()">
+		<option value="" selected>--Pipe--</option>
     		<option value="Select-Object">Select-Object</option>
     		<option value="Where-Object">Where-Object</option>
     		<option value="ForEach-Object">ForEach-Object</option>
