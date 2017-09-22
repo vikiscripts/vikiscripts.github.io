@@ -1,0 +1,202 @@
+<html>
+  <head>
+    <title>PowerShell WebApp</title>
+    <!-- <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'> -->
+    <link rel="stylesheet" href="custom1.css" type="text/css" media="screen" charset="utf-8"> 
+    <style>
+            body {
+              background: #fff;
+              color: #333;
+              font-family: Lato, sans-serif;
+            }
+            .container {
+              display: block;
+              width: 100%;
+              margin: 20px auto 0;
+            }
+            ul {
+              margin: 0;
+              padding: 0;
+            }
+            li * {
+              float: left;
+            }
+            li, h3 {
+              clear:both;
+              list-style:none;
+            }
+            input, button {
+              outline: none;
+            }
+            button {
+              background: none;
+              border: 0px;
+              color: #888;
+              font-size: 15px;
+              width: 70px;
+              margin: 10px 0 0;
+              font-family: Lato, sans-serif;
+              cursor: pointer;
+            }
+            button:hover {
+              color: #333;
+            }
+            /* Heading */
+            h3,
+            label[for='new-task'] {
+              color: #333;
+              font-weight: 700;
+              font-size: 15px;
+              border-bottom: 2px solid #333;
+              padding: 30px 0 10px;
+              margin: 0;
+              text-transform: uppercase;
+            }
+            
+            textarea {
+              margin: 0;
+              font-size: 18px;
+              line-height: 18px;
+              height: 40%;
+              padding: 10px;
+              border: 1px solid #ddd;
+              background: darkblue;
+              border-radius: 6px;
+              /*font-family: Lato, sans-serif;*/
+              color: white;
+              width:100%;
+              pointer-events: none;;
+            }
+            
+            /*select {
+              margin: 0;
+              font-size: 18px;
+              line-height: 16px;
+              height: 45px;
+              border: 1px solid #ddd;
+              background: #fff;
+              border-radius: 6px;
+              font-family: Lato, sans-serif;
+              color: #888;
+            }*/
+            
+            /*input[type="text"] {
+              margin: 0;
+              font-size: 16px;
+              line-height: 18px;
+              height: 30px;
+              padding: 1px;
+              border: 1px solid #ddd;
+              background: #fff;
+              border-radius: 6px;
+              font-family: Lato, sans-serif;
+              color: #888;
+            }
+            
+            input[type="text"]:focus {
+              color: #333;
+            }
+	    */
+
+	    select{border-radius: 6px;}
+	    input[type="text"]{border-radius: 6px;}
+
+
+    </style>   
+  </head>
+  <body>
+    <div class="container">
+      	<h4>PowerShell Command Builder<h4>
+	<!-- <label for="mode">Cmd-Let: </label> -->
+	<select id="mainCmdSelect" onchange="mainCmdtext()">
+    		<option value="Get-Service">Get-Service</option>
+    		<option value="Get-ChildItem" selected>Get-ChildItem</option>
+    		<option value="Get-HotFix">Get-HotFix</option>
+    		<option value="Get-Process">Get-Process</option>  
+    		<option value="Get-EventLog">Get-EventLog</option>
+    	</select>
+
+	<select id="SecondCmdSelect" onchange="SecondCmdtext()">
+    		<option value="Select-Object">Select-Object</option>
+    		<option value="Where-Object">Where-Object</option>
+    		<option value="ForEach-Object">ForEach-Object</option>
+    		<option value="Sort-Object">Sort-Object</option>
+	</select>
+
+	<input id="InputText" type="text">  </input>
+
+	<Button onclick="addtext()">Add</Button>
+	<Button onclick="cleartext()">Clear-Host</Button>
+
+	<br>
+	<br>
+
+	<select id="PropertySelect" onchange="Propertytext()">
+    		<option value="Name">Name</option>
+    		<option value="ID">ID</option>
+    		<option value="Extension">Extension</option>
+    		<option value="EventID">EventID</option>
+	</select>
+
+	<select id="OperaterSelect" onchange="Propertytext()">
+    		<option value="-eq">-eq</option>
+    		<option value="-neq">-neq</option>
+		<option value="-like">-like</option>
+    		<option value="-and">-and</option>
+    		<option value="-or">-or</option>
+		<option value="-not">-not</option>
+	</select>
+
+	<input id="PropText" type="text">  </input>
+
+	<Button onclick="addBlock()">Add-Block</Button>
+
+	<br>
+	<br>
+	<textarea id="alltext"></textarea>
+	<br>
+
+
+
+	<script language="javascript" type="text/javascript">
+
+
+	function mainCmdtext() {
+		var SelectedValue = document.getElementById("mainCmdSelect").value;
+ 		document.getElementById("alltext").value = SelectedValue;
+	}
+
+	function SecondCmdtext() {
+		var newtext = " | " + document.getElementById("SecondCmdSelect").value;
+ 		document.getElementById("alltext").value +=  newtext;
+	}
+
+	function addtext() {
+		//var newtext = " | " + document.getElementById("InputText").value;
+		var newtext = " " + document.getElementById("InputText").value;
+		document.getElementById("alltext").value +=  newtext;
+		document.getElementById("InputText").value="";
+	}
+
+        function addBlock() {
+                var prop = document.getElementById("PropertySelect").value;
+		var Operater = document.getElementById("OperaterSelect").value;
+		var Value = document.getElementById("PropText").value;
+		var newtext = " {$_." + prop + " " + Operater + " '" + Value + "'" + "}";
+		document.getElementById("alltext").value +=  newtext;
+		document.getElementById("PropText").value="";
+	}
+
+	function cleartext() {
+		document.getElementById("alltext").value  = "";
+	}
+
+	</script>
+
+
+      
+    </div>
+
+
+  </body>
+</html>
