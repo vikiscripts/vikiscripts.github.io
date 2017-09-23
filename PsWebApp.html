@@ -157,8 +157,8 @@
 	<br>
 	<textarea id="alltext"></textarea>
 	<br>
-
-
+	
+	<button style="width:160px; Background:lightgreen; border-radius: 6px" onclick="save()">Download Script file</button>
 
 	<script language="javascript" type="text/javascript">
 
@@ -192,6 +192,17 @@
 	function cleartext() {
 		document.getElementById("alltext").value  = "";
 	}
+		
+	function save() {
+         var a = document.createElement('a');
+         with (a) {
+                  href='data:text/csv;base64,' + btoa(document.getElementById('alltext').value);
+                    download='MyScript.ps1';
+                }
+         document.body.appendChild(a);
+         a.click();
+         document.body.removeChild(a);
+        }
 
 	</script>
 
