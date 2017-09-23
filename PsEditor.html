@@ -82,9 +82,6 @@ body{margin:auto;}
 
 <br><br>
 
-<button class="label" onclick="copyToClipboard('#editor')">Copy Code</button>
-
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.8/ace.js" type="text/javascript" charset="utf-8"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
@@ -94,7 +91,7 @@ body{margin:auto;}
 	editor.getSession().setMode("ace/mode/powershell");
 	editor.setOption("showPrintMargin", false);
 	editor.setOption("maxLines", 35);
-        editor.setOption("minLines", 6);
+        editor.setOption("minLines", 30);
 	editor.setAutoScrollEditorIntoView(true);
 	
 	$('#theme').on('change', function () {
