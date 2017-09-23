@@ -64,9 +64,10 @@ body{margin:auto;}
     <option value="ace/theme/tomorrow_night_blue">Tommarow Night Blue</option>
     <option value="ace/theme/tomorrow">Tommarow</option>
     <option value="ace/theme/monokai">Monokai</option>
-    <option value="ace/theme/twilight">Twilight</option>
-    
+    <option value="ace/theme/twilight">Twilight</option>    
 </select>
+	
+<button id="btn-save" class="label">Download Code</button>
  
  <br><br>
  
@@ -84,9 +85,9 @@ function foo(items) {
 	editor.setTheme("ace/theme/crimson_editor");
 	editor.getSession().setMode("ace/mode/powershell");
 	editor.setOption("showPrintMargin", false);
-	editor.setOption("maxLines", 35);
-        editor.setOption("minLines", 20);
-	editor.setAutoScrollEditorIntoView(true);
+	//editor.setOption("maxLines", 35);
+        //editor.setOption("minLines", 20);
+	//editor.setAutoScrollEditorIntoView(true);
 	
 	$('#theme').on('change', function () {
 	    var selected_theme = $('#theme').val();
@@ -99,6 +100,19 @@ function foo(items) {
 		//alert(mode);
 		//console.log(mode)
 		editor.getSession().setMode(mode);
+	});
+	
+	$("#btn-save").click( function() {
+		  var text = editor.getValue();
+		  var extn = $('option:selected').attr('ext');
+		  var a = document.createElement('a');
+          with (a) {
+                href='data:text/csv;base64,' + btoa(editor.getValue());
+                download= "vikiScripts-download-Code" + extn;
+          }
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
 	});
 	
 	
