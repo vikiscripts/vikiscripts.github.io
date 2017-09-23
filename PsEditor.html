@@ -45,38 +45,46 @@ body{margin:auto;}
 }
 </style>
 
+<br><br>
+
 <label for="mode" class="label">Language: </label>
 <select id="mode">
-    <option value="ace/mode/powershell" selected>Powershell</option>
-    <option value="ace/mode/vbscript">vbscript</option>
-    <option value="ace/mode/batchfile">batchfile</option>
-    <option value="ace/mode/python">python</option>  
-    <option value="ace/mode/html">html</option>
-    <option value="ace/mode/javascript">javascript</option>
-    <option value="ace/mode/json">json</option>
-    <option value="ace/mode/php">php</option>      
-    <option value="ace/mode/xml">xml</option>
+    <option ext=".ps1" value="ace/mode/powershell" selected>Powershell</option>
+	<option ext=".vbs" value="ace/mode/vbscript">vbscript</option>
+    <option ext=".cmd" value="ace/mode/batchfile">batchfile</option>
+	<option ext=".py" value="ace/mode/python">python</option>  
+    <option ext=".html" value="ace/mode/html">html</option>
+    <option ext=".js" value="ace/mode/javascript">javascript</option>
+    <option ext=".json" value="ace/mode/json">json</option>
+    <option ext=".php" value="ace/mode/php">php</option>      
+    <option ext=".xml" value="ace/mode/xml">xml</option>
  </select>
  
 <label for="theme" class="label">Theme: </label>
 <select id="theme">
     <option value="ace/theme/crimson_editor">Crimson Editor</option>
-    <option value="ace/theme/tomorrow_night_blue">Tommarow Night Blue</option>
-    <option value="ace/theme/tomorrow">Tommarow</option>
-    <option value="ace/theme/monokai">Monokai</option>
-    <option value="ace/theme/twilight">Twilight</option>    
+	<option value="ace/theme/tomorrow_night_blue">Tommarow Night Blue</option>
+	<option value="ace/theme/tomorrow">Tommarow</option>
+	<option value="ace/theme/monokai">Monokai</option>
+	<option value="ace/theme/twilight">Twilight</option>    
 </select>
-	
+
 <button id="btn-save" class="label">Download Code</button>
  
  <br><br>
  
-<div id="editor">#This is a Test Code. You can delete and start all over.
-function foo(items) { 
+<div id="editor">function foo(items) { 
   var x = "All this is syntax highlighted"; 
   return x;
-}
-</div>
+  'VbScript Comment
+  #PS Comment
+}</div>
+
+<br><br>
+
+<button class="label" onclick="copyToClipboard('#editor')">Copy Code</button>
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.8/ace.js" type="text/javascript" charset="utf-8"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
@@ -86,7 +94,7 @@ function foo(items) {
 	editor.getSession().setMode("ace/mode/powershell");
 	editor.setOption("showPrintMargin", false);
 	//editor.setOption("maxLines", 35);
-        //editor.setOption("minLines", 20);
+    //editor.setOption("minLines", 6);
 	//editor.setAutoScrollEditorIntoView(true);
 	
 	$('#theme').on('change', function () {
@@ -101,7 +109,7 @@ function foo(items) {
 		//console.log(mode)
 		editor.getSession().setMode(mode);
 	});
-	
+
 	$("#btn-save").click( function() {
 		  var text = editor.getValue();
 		  var extn = $('option:selected').attr('ext');
@@ -114,7 +122,4 @@ function foo(items) {
           a.click();
           document.body.removeChild(a);
 	});
-	
-	
-	
 </script>
